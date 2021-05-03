@@ -1,0 +1,33 @@
+h1{
+    text-align: center;
+    font-size: 75px;
+    font-style: inherit;
+}
+p{
+    text-align: center;
+    font-size: 35px;
+}
+img {
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    width:400px;
+    height:400px;
+}
+#btn{
+    width: 100px;
+    margin-left: 600px;
+    margin-right: 600px;
+}
+#entry{
+    background-color:lightskyblue;
+    padding:35px;
+    text-align: center;
+}
+label{
+    font-family: monospace;
+    font-size: 20px;
+}
+body{
+    background-color: lightslategrey;
+}
