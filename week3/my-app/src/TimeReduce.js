@@ -3,7 +3,7 @@ const initialState = {
     secs: 0,
     mins: 0,
     milisecs: 0,
-    start: false,
+    started: false,
     pause: false,
     lap: []
 }
@@ -22,9 +22,9 @@ export function stop() {
         type: "Stop"
     }
 }
-export function lap() {
+export function laps() {
     return {
-        type: "Lap"
+        type: "LAP"
     }
 }
 export function reset() {
@@ -77,24 +77,24 @@ function TimeReduce(state = initialState, action) {
         }
     }
     if (action.type === "Lap") {
-        let lap = {
+        let laps = {
             "mins": state.mins,
             "secs": state.secs,
             "milisecs": state.milisecs
         }
         return {
             ...state,
-            laps: [...state.laps, lap]
+            lap: [...state.lap, laps]
         }
     }
     if (action.type === "Reset") {
         return {
             ...state,
             time: new Date(),
+            start: false,
             mins: 0,
             secs: 0,
             milisecs: 0,
-            start: false,
             pause: false,
             laps: []
         }
