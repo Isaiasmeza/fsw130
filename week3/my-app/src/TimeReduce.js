@@ -9,7 +9,7 @@ const initialState = {
 }
 export function timer() {
     return {
-        type: "Timer "
+        type: "Timer"
     }
 }
 export function start() {
@@ -24,7 +24,7 @@ export function stop() {
 }
 export function laps() {
     return {
-        type: "LAP"
+        type: "Lap"
     }
 }
 export function reset() {
@@ -35,10 +35,10 @@ export function reset() {
 function TimeReduce(state = initialState, action) {
     if (action.type === "Timer") {
         let time = state.time
+        let mins = state.mins
         let milisecs = Date.now() - state.time
         let secs = state.secs
-        let mins = state.mins
-
+        
 
         if (state.paused) {
             time = new Date(state.time - state.milisecs)
@@ -54,16 +54,16 @@ function TimeReduce(state = initialState, action) {
         }
         return {
             ...state,
-            time:time,
+            time: time,
             milisecs: milisecs,
-            secs : secs,
-            mins : mins, 
+            secs: secs,
+            mins: mins,
             paused: false
         }
     }
-    if (action.type === "Start"){
+    if (action.type === "Start") {
         let newTime = new Date()
-        return{
+        return {
             ...state,
             time: newTime,
             started: true,
@@ -72,19 +72,22 @@ function TimeReduce(state = initialState, action) {
     if (action.type === "Stop") {
         return {
             ...state,
-            start: false,
-            pause: true
+            paused: true,
+            started: false
         }
     }
+    //unfound error 
     if (action.type === "Lap") {
+
         let laps = {
             "mins": state.mins,
             "secs": state.secs,
             "milisecs": state.milisecs
         }
+
         return {
             ...state,
-            lap: [...state.lap, laps]
+            laps: [...state.lap, laps]
         }
     }
     if (action.type === "Reset") {
@@ -92,9 +95,10 @@ function TimeReduce(state = initialState, action) {
             ...state,
             time: new Date(),
             start: false,
+            milisecs: 0,
             mins: 0,
             secs: 0,
-            milisecs: 0,
+            
             pause: false,
             laps: []
         }

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { timer, start, stop, reset,laps } from "./TimeReduce"
+import { timer, start, stop, reset,laps} from "./TimeReduce"
 import { useSelector, useDispatch } from "react-redux"
 import Button from "./button"
 
@@ -12,30 +12,30 @@ function Timer() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (started) {   
+        if (started) {
             const startTime = setInterval(() => { dispatch(timer()) }, 1)
             return () => clearInterval(startTime)
         }
     })
-    const data = lap.map((lap, index) => (
-        <div>
-            Laps {index} : {lap.mins} : {lap.secs} : {lap.milisecs}
+    const data = lap.map((laps,index) => (
+        <div key={index}>
+            Lap {index} : {laps.mins} : {laps.secs} : {laps.milisecs}
         </div>
     ))
     return (
+        <div>
             <div>
-                <div>
-                    {mins < 10 ? <> 0{mins}</> : mins}:
+                {mins < 10 ? <> 0{mins}</> : mins}:
                 </div>
 
-                <div >
-                    {secs < 10 ? <> 0{secs}</> : secs}:
+            <div >
+                {secs < 10 ? <> 0{secs}</> : secs}:
                 </div>
 
-                <div>
-                    {milisecs}
-                </div>
-            
+            <div>
+                {milisecs}
+            </div>
+
 
             <Button description="Start" onClick={() => { dispatch(start()) }} />
             <Button description="Stop" onClick={() => { dispatch(stop()) }} />
