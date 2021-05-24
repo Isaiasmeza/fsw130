@@ -79,7 +79,7 @@ function render() {
 document.getElementById("newEntry")
 // tried e.preventDefault() here 
     .addEventListener("click", function (e) {
-        // I also tried e.preventDefault() here but would not work
+         e.preventDefault() 
         const name = document.getElementById("add-Name").value
         const email = document.getElementById("add-email").value
         const phone = document.getElementById("add-phone").value
